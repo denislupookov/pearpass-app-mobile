@@ -9,10 +9,34 @@ on:
 
 jobs:
   android:
-    runs-on: ["app-build-linux-x64"]
+    runs-on: ubuntu-24.04
     outputs:
       version: ${{ steps.meta.outputs.VERSION }}
     steps:
+      - name: cleanup
+        run: |
+          # Remove .NET SDKs
+          sudo rm -rf /usr/share/dotnet
+
+          # Remove Swift toolchain
+          sudo rm -rf /usr/share/swift
+
+          # Remove Haskell (GHC)
+          sudo rm -rf /usr/local/.ghcup
+          # Remove Julia
+          sudo rm -rf /usr/local/julia*
+
+          sudo rm -rf /opt/microsoft /opt/google
+          # Remove Azure CLI
+          sudo rm -rf /opt/az
+          # Remove PowerShell
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /opt/hostedtoolcache
+
+          docker system prune -af || true
+          docker builder prune -af || true
+          df -h
+
       - uses: actions/checkout@v4
         with:
           submodules: true
