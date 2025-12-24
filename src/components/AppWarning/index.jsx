@@ -4,25 +4,16 @@ import { View, Text, StyleSheet } from 'react-native'
 
 /**
  * @param {{
- *  testID?: string,
  *  warning: string,
  *  containerStyles: object,
  *  textStyles: object
  * }} props
  * @returns
  */
-export const AppWarning = ({ testID, warning, containerStyles, textStyles }) => (
-  <View
-    testID={testID}
-    nativeID={testID}
-    accessibilityLabel={testID}
-    style={[styles.warningContainer, containerStyles]}>
+export const AppWarning = ({ warning, containerStyles, textStyles }) => (
+  <View style={[styles.warningContainer, containerStyles]}>
     <YellowErrorIcon width={14} height={14} />
-    <Text 
-    testID={testID ? `${testID}-text` : undefined}
-    nativeID={testID ? `${testID}-text` : undefined}
-    accessibilityLabel={testID ? `${testID}-text` : undefined}
-    style={[styles.warningText, textStyles]}>{warning}</Text>
+    <Text style={[styles.warningText, textStyles]}>{warning}</Text>
   </View>
 )
 const styles = StyleSheet.create({

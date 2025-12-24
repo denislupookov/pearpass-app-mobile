@@ -155,19 +155,4 @@ describe('InputField Component', () => {
     )
     expect(toJSON()).toMatchSnapshot()
   })
-
-  test('passes testID to TextInput', () => {
-    const { getByTestId } = render(
-      <ThemeProvider>
-        <InputField
-          testID="input-field"
-          value=""
-          placeholder="Enter value"
-          isSecure={false}
-          isColored={false}
-        />
-      </ThemeProvider>
-    )
-    expect(getByTestId('input-field')).toBeTruthy()
-  })
 })

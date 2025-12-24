@@ -47,13 +47,4 @@ describe('HighlightString Component', () => {
     )
     expect(toJSON()).toMatchSnapshot()
   })
-
-  test('passes testID to native component', () => {
-    const { getByTestId } = render(
-      <ThemeProvider>
-        <HighlightString testID="highlight-string" text="Test 123!" />
-      </ThemeProvider>
-    )
-    expect(getByTestId('highlight-string')).toBeTruthy()
-  })
 })

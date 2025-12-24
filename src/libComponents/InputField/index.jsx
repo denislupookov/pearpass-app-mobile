@@ -39,11 +39,7 @@ import { HighlightString } from '../HighlightString'
  *  variant?: 'default' | 'outline',
  *  isTransparent: boolean,
  *  belowInputContent?: React.ReactNode,
- *  shouldDisplayCustomPlaceholder?: boolean,
- *  testID?: string,
- *  inputTestID?: string,
- *  accessibilityLabel?: string,
- *  nativeID?: string
+ *  shouldDisplayCustomPlaceholder?: boolean
  * }} props
  */
 export const InputField = ({
@@ -69,11 +65,7 @@ export const InputField = ({
   index,
   isTransparent = false,
   belowInputContent,
-  shouldDisplayCustomPlaceholder = false,
-  testID,
-  inputTestID,
-  accessibilityLabel,
-  nativeID
+  shouldDisplayCustomPlaceholder = false
 }) => {
   const inputRef = useRef(null)
   const [isFocused, setIsFocused] = useState(false)
@@ -196,9 +188,6 @@ export const InputField = ({
           ) : (
             <TextInput
               ref={inputRef}
-              testID={inputTestID ?? testID}
-              nativeID={(inputTestID ?? testID) ? (inputTestID ?? testID) : undefined}
-              accessibilityLabel={inputTestID ?? testID}
               value={value}
               onChangeText={handleChange}
               placeholder={shouldDisplayCustomPlaceholder ? '' : placeholder}
@@ -268,12 +257,7 @@ export const InputField = ({
 
   if (isDisabled && onClick) {
     return (
-      <View 
-        style={getWrapperStyle()}
-        testID={testID}
-        nativeID={nativeID ?? testID}
-        accessibilityLabel={accessibilityLabel ?? testID}
-      >
+      <View style={getWrapperStyle()}>
         {InputContent}
         {!!belowInputContent && belowInputContent}
       </View>
@@ -282,9 +266,6 @@ export const InputField = ({
 
   return (
     <TouchableOpacity
-      testID={testID}
-      nativeID={nativeID ?? testID}
-      accessibilityLabel={accessibilityLabel ?? testID}
       onPress={handleClick}
       style={getWrapperStyle()}
       accessible={false}

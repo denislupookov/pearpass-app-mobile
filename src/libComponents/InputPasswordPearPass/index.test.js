@@ -103,18 +103,4 @@ describe('InputPasswordPearPass Component', () => {
     )
     expect(toJSON()).toMatchSnapshot()
   })
-
-  test('passes testID to native input', () => {
-    const { getByTestId } = render(
-      <ThemeProvider>
-        <InputPasswordPearPass
-          testID="password-input"
-          value="test"
-          placeholder="Enter password"
-          isPassword={true}
-        />
-      </ThemeProvider>
-    )
-    expect(getByTestId('password-input')).toBeTruthy()
-  })
 })

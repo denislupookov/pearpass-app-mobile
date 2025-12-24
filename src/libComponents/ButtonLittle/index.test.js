@@ -79,16 +79,4 @@ describe('ButtonLittle Component', () => {
     )
     expect(toJSON()).toMatchSnapshot()
   })
-
-  test('passes testID to native button', () => {
-    const onPressMock = jest.fn()
-    const { getByTestId } = render(
-      <ThemeProvider>
-        <ButtonLittle testID="button-little" onPress={onPressMock}>
-          Little Button
-        </ButtonLittle>
-      </ThemeProvider>
-    )
-    expect(getByTestId('button-little')).toBeTruthy()
-  })
 })

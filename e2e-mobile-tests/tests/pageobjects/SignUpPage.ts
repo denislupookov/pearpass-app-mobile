@@ -5,8 +5,8 @@ class SignUpPage extends BasePage {
   protected selectors = signUpLocators
 
   async waitForLoaded(): Promise<void> {
-    await this.waitForDisplayed('')
-    await this.waitForDisplayed('')
+    await this.waitForDisplayed('onboardingLogo')
+    await this.waitForDisplayed('onboardingProgressBar')
   }
 }
 

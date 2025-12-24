@@ -4,27 +4,15 @@ import Svg, { Path } from 'react-native-svg'
  * @param {{
  *  width?: string
  *  height?: string
- *  testID?: string
- *  accessibilityLabel?: string
- *  nativeID?: string
  * }} props
  */
-export const LogoTextWithLock = ({ 
-  height = '57', 
-  width = '256',
-  testID,
-  accessibilityLabel,
-  nativeID
-}) => (
+export const LogoTextWithLock = ({ height = '57', width = '256' }) => (
   <Svg
     width={width}
     height={height}
     viewBox="0 0 256 57"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    testID={testID}
-    accessibilityLabel={accessibilityLabel}
-    nativeID={nativeID ?? testID}
   >
     <Path
       d="M42.1291 52.6182H17.0021V55.0292H42.1291V52.6182Z"

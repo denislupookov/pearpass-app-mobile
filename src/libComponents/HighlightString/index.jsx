@@ -7,25 +7,16 @@ import { HighlightedText, NumberSpan, SymbolSpan } from './styles'
  *  text: string,
  *  fontsize: string,
  *  fontWeight: number,
- *  numberOfLines: number,
- *  testID?: string,
- *  accessibilityLabel?: string,
- *  nativeID?: string
+ *  numberOfLines: number
  * }} props
  */
 export const HighlightString = ({
   text,
   fontsize = '20px',
   fontWeight = 400,
-  numberOfLines = undefined,
-  testID,
-  accessibilityLabel,
-  nativeID
+  numberOfLines = undefined
 }) => (
   <HighlightedText
-    testID={testID}
-    accessibilityLabel={accessibilityLabel ?? testID}
-    nativeID={nativeID ?? testID}
     numberOfLines={numberOfLines}
     size={fontsize}
     weight={fontWeight}

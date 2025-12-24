@@ -2,37 +2,15 @@ import { colors } from 'pearpass-lib-ui-theme-provider/native'
 
 import { Button, ButtonText } from './styles'
 
-/**
- * @param {{
- *  children?: ReactNode
- *  startIcon?: ElementType
- *  variant?: 'primary' | 'secondary'
- *  onPress: () => void
- *  testID?: string
- *  accessibilityLabel?: string
- *  nativeID?: string
- * }} props
- */
 export const ButtonFilter = ({
   children,
   startIcon,
   variant = 'primary',
-  onPress,
-  testID,
-  accessibilityLabel,
-  nativeID
+  onPress
 }) => {
   const Icon = startIcon
   return (
-    <Button 
-      testID={testID}
-      nativeID={nativeID ?? testID}
-      accessibilityLabel={accessibilityLabel ?? testID}
-      accessibilityRole="button"
-      activeOpacity={0.8} 
-      variant={variant} 
-      onPress={onPress}
-    >
+    <Button activeOpacity={0.8} variant={variant} onPress={onPress}>
       {Icon && (
         <Icon
           size="21"
