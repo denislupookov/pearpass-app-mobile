@@ -120,7 +120,7 @@ export const BottomSheetBlindPeersPersonalContent = ({
       try {
         setIsLoadingContext(true)
 
-        if (isEditMode && blindMirrorsData[0].isDefault) {
+        if (isEditMode && blindMirrorsData?.[0]?.isDefault) {
           await removeAllBlindMirrors()
         }
 
