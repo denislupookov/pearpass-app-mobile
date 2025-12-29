@@ -124,14 +124,14 @@ export const UnlockVault = ({ vaultId }) => {
               <ActivityIndicator size="small" color={colors.primary400.mode1} testID="unlock-vault-loading" />
             ) : (
               <>
-                <View testID="unlock-vault-continue-button">
-                  <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
+                  <ButtonPrimary 
+                    testID="unlock-vault-continue-button"
+                    stretch onPress={handleSubmit(onSubmit)}>
                     {t`Continue`}
                   </ButtonPrimary>
-                </View>
 
-                <View testID="unlock-vault-select-vaults-button">
                   <ButtonSecondary
+                    testID="unlock-vault-select-vaults-button"
                     stretch
                     onPress={() =>
                       navigation.navigate('Welcome', { state: 'selectOrLoad' })
@@ -139,7 +139,6 @@ export const UnlockVault = ({ vaultId }) => {
                   >
                     {t`Select Vaults`}
                   </ButtonSecondary>
-                </View>
               </>
             )}
           </View>
