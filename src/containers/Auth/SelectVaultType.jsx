@@ -102,7 +102,6 @@ export const SelectVaultType = () => {
           >
             {t`Load a vault`}
           </ButtonSecondary>
-        </View>
       </View>
     </View>
   )
