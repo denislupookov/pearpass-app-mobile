@@ -6,16 +6,10 @@ import {
   DEFAULT_AUTO_LOCK_TIMEOUT
 } from 'pearpass-lib-constants'
 import { ArrowDownIcon } from 'pearpass-lib-ui-react-native-components'
+import { Pressable, Text, View } from 'react-native'
 
 import { BottomSheetAutoLockContent } from './BottomSheetContent'
-import {
-  Container,
-  Description,
-  SettingLabel,
-  SettingRow,
-  TimeoutSelector,
-  TimeoutText
-} from './styles'
+import { styles } from './styles'
 import { AppSwitch } from '../../components/AppSwitch/AppSwitch'
 import { useAutoLockContext } from '../../context/AutoLockContext'
 import { useBottomSheet } from '../../context/BottomSheetContext'
@@ -58,20 +52,21 @@ export const AutoLockSettings = () => {
   }
 
   return (
-    <Container>
-      <SettingRow>
-        <SettingLabel>{t`Auto Log-out`}</SettingLabel>
+    <View style={styles.container}>
+      <View style={styles.settingRow}>
+        <Text style={styles.settingLabel}>{t`Auto Log-out`}</Text>
         <AppSwitch value={isAutoLockEnabled} onChange={handleToggleAutoLock} />
-      </SettingRow>
-      <Description>
+      </View>
+      <Text style={styles.description}>
         {t`Automatically logs you out after you stop interacting with the app, based on the timeout you select.`}
-      </Description>
+      </Text>
       {isAutoLockEnabled && (
-        <TimeoutSelector onPress={handleOpenSelector}>
-          <TimeoutText>{currentTimeoutLabel}</TimeoutText>
+        <Pressable style={styles.timeoutSelector} onPress={handleOpenSelector}>
+          <Text style={styles.timeoutText}>{currentTimeoutLabel}</Text>
           <ArrowDownIcon size="14" />
-        </TimeoutSelector>
+        </Pressable>
       )}
-    </Container>
+    </View>
   )
 }
+

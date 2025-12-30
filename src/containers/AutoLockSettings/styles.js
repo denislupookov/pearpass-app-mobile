@@ -1,43 +1,44 @@
-import styled from 'styled-components/native'
+import { StyleSheet } from 'react-native'
 
-export const Container = styled.View`
-  display: flex;
-`
+import { colors } from 'pearpass-lib-ui-theme-provider/native'
 
-export const Description = styled.Text`
-  color: ${({ theme }) => theme.colors.white.mode1};
-  font-family: 'Inter';
-  font-size: 12px;
-  font-weight: 300;
-  margin-top: 5px;
-`
+export const styles = StyleSheet.create({
+  container: {
+    display: 'flex'
+  },
+  description: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontWeight: '300',
+    marginTop: 5
+  },
+  settingRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  settingLabel: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '700'
+  },
+  timeoutSelector: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    paddingHorizontal: 16,
+    backgroundColor: colors.grey400.mode1,
+    borderRadius: 8,
+    marginTop: 8
+  },
+  timeoutText: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '700'
+  }
+})
 
-export const SettingRow = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const SettingLabel = styled.Text`
-  color: ${({ theme }) => theme.colors.white.mode1};
-  font-family: 'Inter';
-  font-size: 16px;
-  font-weight: 700;
-`
-
-export const TimeoutSelector = styled.Pressable`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background-color: ${({ theme }) => theme.colors.grey400.mode1};
-  border-radius: 8px;
-  margin-top: 8px;
-`
-
-export const TimeoutText = styled.Text`
-  color: ${({ theme }) => theme.colors.white.mode1};
-  font-family: 'Inter';
-  font-size: 16px;
-  font-weight: 700;
-`
