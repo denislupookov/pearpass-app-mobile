@@ -6,10 +6,11 @@ import {
   DEFAULT_AUTO_LOCK_TIMEOUT
 } from 'pearpass-lib-constants'
 import { ArrowDownIcon } from 'pearpass-lib-ui-react-native-components'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+
+import { colors } from 'pearpass-lib-ui-theme-provider/native'
 
 import { BottomSheetAutoLockContent } from './BottomSheetContent'
-import { styles } from './styles'
 import { AppSwitch } from '../../components/AppSwitch/AppSwitch'
 import { useAutoLockContext } from '../../context/AutoLockContext'
 import { useBottomSheet } from '../../context/BottomSheetContext'
@@ -69,4 +70,43 @@ export const AutoLockSettings = () => {
     </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex'
+  },
+  description: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontWeight: '300',
+    marginTop: 5
+  },
+  settingRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  settingLabel: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '700'
+  },
+  timeoutSelector: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    paddingHorizontal: 16,
+    backgroundColor: colors.grey400.mode1,
+    borderRadius: 8,
+    marginTop: 8
+  },
+  timeoutText: {
+    color: colors.white.mode1,
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '700'
+  }
+})
 
