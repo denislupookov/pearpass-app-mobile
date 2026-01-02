@@ -116,17 +116,19 @@ export const NewVault = () => {
         >
           <View style={styles.formContainer}>
             <View style={styles.headerBlock}>
-              <Text style={styles.title}>{t`Create New Vault`}</Text>
+              <Text style={styles.title} testID="new-vault-title">{t`Create New Vault`}</Text>
               <Text
                 style={styles.subtitle}
+                testID="new-vault-subtitle"
               >{t`Create your ${!hasVaults ? 'first vault' : 'vault'} by giving it a name.${PROTECTED_VAULT_ENABLED ? ' You can also add a password to secure this vault for extra protection.' : ''}`}</Text>
             </View>
 
             <View style={styles.inputs}>
-              <InputPasswordPearPass
-                placeholder={t`Enter Name`}
-                {...register('name')}
-              />
+                <InputPasswordPearPass
+                  testID="new-vault-name-input"
+                  placeholder={t`Enter Name`}
+                  {...register('name')}
+                />
             </View>
             {PROTECTED_VAULT_ENABLED && (
               <View style={styles.inputs}>
@@ -187,17 +189,20 @@ export const NewVault = () => {
                 />
               ) : (
                 <>
-                  <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
-                    {t`Continue`}
-                  </ButtonPrimary>
-                  <ButtonSecondary
-                    stretch
-                    onPress={() =>
-                      navigation.navigate('Welcome', { state: 'selectOrLoad' })
-                    }
-                  >
-                    {t`Select Vaults`}
-                  </ButtonSecondary>
+                    <ButtonPrimary 
+                      testID="new-vault-continue-button"
+                      stretch onPress={handleSubmit(onSubmit)}>
+                      {t`Continue`}
+                    </ButtonPrimary>
+                    <ButtonSecondary
+                      testID="new-vault-select-vaults-button"
+                      stretch
+                      onPress={() =>
+                        navigation.navigate('Welcome', { state: 'selectOrLoad' })
+                      }
+                    >
+                      {t`Select Vaults`}
+                    </ButtonSecondary>
                 </>
               )}
             </View>
