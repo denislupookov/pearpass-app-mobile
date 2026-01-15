@@ -49,8 +49,8 @@ export const BottomSheetAddDeviceContent = () => {
 
       <Text style={styles.description}>
         {activeTab === TAB.PAIR_THIS
-          ? t`Scan this QR code or paste the vault key into the PearPass app on your other device to connect it to your vault. This method keeps your vault secure.`
-          : t`Scan the QR code or paste the vault key from the PearPass app on your other device to connect it to your vault. This method keeps your vault secure.`}
+          ? t`Scan this QR code or paste the vault key into the PearPass app on your other device to connect it to your account. This method keeps your account secure.`
+          : t`Scan the QR code or paste the vault key from the PearPass app on your other device to connect it to your account. This method keeps your account secure.`}
       </Text>
 
       {activeTab === TAB.PAIR_THIS ? (
@@ -71,7 +71,7 @@ export const BottomSheetAddDeviceContent = () => {
                 activeOpacity={0.7}
                 onPress={() => setActiveTab(TAB.PAIR_ANOTHER)}
               >
-                <Text style={styles.tabText}>{t`Load a Vault`}</Text>
+                <Text style={styles.tabText}>{t`Import vault`}</Text>
               </TouchableOpacity>
             </View>
           }
@@ -95,7 +95,7 @@ export const BottomSheetAddDeviceContent = () => {
                 onPress={() => setActiveTab(TAB.PAIR_ANOTHER)}
               >
                 <Text style={[styles.tabText, styles.tabTextActive]}>
-                  {t`Load a Vault`}
+                  {t`Import vault`}
                 </Text>
               </TouchableOpacity>
             </View>
