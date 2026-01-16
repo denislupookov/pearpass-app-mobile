@@ -50,23 +50,32 @@ export const SelectVaultType = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
+      <View style={styles.logoContainer} testID="select-vault-type-logo">
         <LogoTextWithLock width={170} height={50} />
       </View>
 
       <View style={styles.topSection}>
         {!vaultsData?.length ? (
           <View style={styles.textWrapper}>
-            <Text style={styles.headerText}>{t`Enter Master Password`}</Text>
-            <Text style={styles.subHeaderText}>
-              {t`Now create a secure vault or load an existing one to get started.`}
+            <Text
+              style={styles.headerText}
+              testID="select-vault-type-empty-title"
+            >{t`Set Up Your Vault`}</Text>
+            <Text
+              style={styles.subHeaderText}
+              testID="select-vault-type-empty-subtitle"
+            >
+              {t`Start fresh with a new vault or import an existing one to continue.`}
             </Text>
           </View>
         ) : (
           <View style={styles.vaultsSection}>
             <Text
               style={styles.headerText}
-            >{t`Select a vault, create a new one or load another one`}</Text>
+              testID="select-vault-type-list-title"
+            >
+              {t`Open an existing vault or create a new one.`}
+            </Text>
 
             <ScrollView
               style={styles.vaultsList}
@@ -88,15 +97,20 @@ export const SelectVaultType = () => {
       </View>
 
       <View style={styles.bottomSection}>
-        <ButtonPrimary stretch onPress={handleCreateVault}>
+        <ButtonPrimary
+          testID="select-vault-type-create-new"
+          stretch
+          onPress={handleCreateVault}
+        >
           {t`Create a new vault`}
         </ButtonPrimary>
 
         <ButtonSecondary
+          testID="select-vault-type-load-existing"
           stretch
           onPress={() => navigation.navigate('Welcome', { state: 'load' })}
         >
-          {t`Load a vault`}
+          {t`Import existing vault`}
         </ButtonSecondary>
       </View>
     </View>

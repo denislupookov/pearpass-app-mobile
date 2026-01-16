@@ -3,7 +3,7 @@
     "name": "PearPass",
     "slug": "pearpass",
     "icon": "./assets/images/appIcons/app-icon.png",
-    "version": "1.1.1",
+    "version": "1.2.1",
     "android": {
       "package": "com.pears.pass",
       "permissions": [
@@ -44,7 +44,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes for securely pairing your account with another device."
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes for securely pairing your vault with another device."
         }
       ],
       [
@@ -83,6 +83,7 @@
       "expo-video"
     ],
     "extra": {
+      "appVersion": "1.2.1",
       "eas": {
         "projectId": "28facb62-e2a2-4b6c-bc3f-0f5469e79415"
       }

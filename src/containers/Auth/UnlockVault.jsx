@@ -72,6 +72,7 @@ export const UnlockVault = ({ vaultId }) => {
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      testID="unlock-vault-screen"
     >
       <ScrollView
         contentContainerStyle={{
@@ -83,6 +84,7 @@ export const UnlockVault = ({ vaultId }) => {
         }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
+        testID="unlock-vault-scroll"
       >
         <View
           style={{
@@ -91,6 +93,7 @@ export const UnlockVault = ({ vaultId }) => {
             alignItems: 'center',
             gap: 20
           }}
+          testID="unlock-vault-form-container"
         >
           <Text
             style={{
@@ -101,12 +104,16 @@ export const UnlockVault = ({ vaultId }) => {
               marginBottom: 10,
               paddingHorizontal: 20
             }}
+            testID="unlock-vault-title"
           >
-            {t`Unlock with the ${selectedVault?.name ?? selectedVault?.id} Vault password`}
+            {t`Unlock with the ${
+              selectedVault?.name ?? selectedVault?.id
+            } Vault password`}
           </Text>
 
           <View style={{ width: '100%' }}>
             <InputPasswordPearPass
+              testID="unlock-vault-password-input"
               placeholder={t`Vault password`}
               {...register('password')}
               isPassword
@@ -115,14 +122,23 @@ export const UnlockVault = ({ vaultId }) => {
 
           <View style={{ width: '100%', gap: 10 }}>
             {isLoading ? (
-              <ActivityIndicator size="small" color={colors.primary400.mode1} />
+              <ActivityIndicator
+                size="small"
+                color={colors.primary400.mode1}
+                testID="unlock-vault-loading"
+              />
             ) : (
               <>
-                <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
+                <ButtonPrimary
+                  testID="unlock-vault-continue-button"
+                  stretch
+                  onPress={handleSubmit(onSubmit)}
+                >
                   {t`Continue`}
                 </ButtonPrimary>
 
                 <ButtonSecondary
+                  testID="unlock-vault-select-vaults-button"
                   stretch
                   onPress={() =>
                     navigation.navigate('Welcome', { state: 'selectOrLoad' })

@@ -7,6 +7,10 @@ import { Validator } from 'pear-apps-utils-validator'
 import { colors } from 'pearpass-lib-ui-theme-provider/native'
 import { useUserData, useVaults } from 'pearpass-lib-vault'
 import {
+  clearBuffer,
+  stringToBuffer
+} from 'pearpass-lib-vault/src/utils/buffer'
+import {
   ActivityIndicator,
   ScrollView,
   View,
@@ -45,11 +49,15 @@ export const EnterPassword = () => {
   const { initVaults } = useVaults()
 
   const onSubmit = async (value) => {
+    const passwordBuffer = stringToBuffer(value.password)
+
     try {
       setIsLoading(true)
-      await logIn({ password: value.password })
-      await initVaults({ password: value.password })
-      navigation.replace('Welcome', { state: NAVIGATION_ROUTES.SELECT_OR_LOAD })
+      await logIn({ password: passwordBuffer })
+      await initVaults({ password: passwordBuffer })
+      navigation.replace('Welcome', {
+        state: NAVIGATION_ROUTES.SELECT_OR_LOAD
+      })
       setIsLoading(false)
     } catch (error) {
       const status = await refreshMasterPasswordStatus()
@@ -68,6 +76,8 @@ export const EnterPassword = () => {
             : t`Incorrect password. You have ${status?.remainingAttempts} attempts before the app locks for 5 minutes.`
       })
       setIsLoading(false)
+    } finally {
+      clearBuffer(passwordBuffer)
     }
   }
 
@@ -102,9 +112,9 @@ export const EnterPassword = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="enter-password-screen">
       {!isKeyboardVisible && (
-        <View style={styles.logoContainer}>
+        <View style={styles.logoContainer} testID="enter-password-logo">
           <LogoTextWithLock width={170} height={50} />
         </View>
       )}
@@ -120,25 +130,37 @@ export const EnterPassword = () => {
       >
         <View style={styles.formContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>{t`Enter Master Password`}</Text>
+            <Text
+              style={styles.headerText}
+              testID="enter-password-title"
+            >{t`Enter Master Password`}</Text>
           </View>
 
           <View style={styles.inputContainer}>
             <InputPasswordPearPass
+              testID="enter-password-input"
+              errorTestID="enter-password-input-error"
               placeholder={t`Master password`}
               {...register('password')}
               isPassword
             />
           </View>
+
           <AppWarning
+            testID="enter-password-warning"
             warning={t`Don't forget your master password. It's the only way to access your vault. We can't help recover it. Back it up securely.`}
           />
+
           <View style={styles.buttonContainer}>
             {isLoading ? (
               <ActivityIndicator size="small" color={colors.primary400.mode1} />
             ) : (
               <>
-                <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
+                <ButtonPrimary
+                  testID="enter-password-continue-button"
+                  stretch
+                  onPress={handleSubmit(onSubmit)}
+                >
                   {t`Continue`}
                 </ButtonPrimary>
 

@@ -71,15 +71,20 @@ export const LoadVault = () => {
         >
           <View style={styles.formContainer}>
             <View style={{ marginBottom: 20, alignItems: 'center', gap: 10 }}>
-              <Text style={styles.title}>{t`Load an existing Vault`}</Text>
+              <Text
+                style={styles.title}
+                testID="load-vault-title"
+              >{t`Import an existing vault`}</Text>
               <Text
                 style={styles.subtitle}
-              >{t`Open your vault with this code`}</Text>
+                testID="load-vault-subtitle"
+              >{t`Using PearPass on your other device, use "Add Device" to generate a QR or connection code to pair your vault. This method keeps your account secure.`}</Text>
             </View>
 
             <View style={{ width: '100%', gap: 15 }}>
               <InputPasswordPearPass
-                placeholder={t`Insert your vault's code...`}
+                testID="load-vault-invite-code-input"
+                placeholder={t`Insert vault key...`}
                 value={inviteCode}
                 onChange={setInviteCode}
                 error={error}
@@ -100,14 +105,16 @@ export const LoadVault = () => {
               ) : (
                 <>
                   <ButtonPrimary
+                    testID="load-vault-open-button"
                     onPress={() => pairWithCode(inviteCode)}
                     stretch
                     disabled={!inviteCode.length || isLoading}
                   >
-                    {t`Open Vault`}
+                    {t`Import vault`}
                   </ButtonPrimary>
 
                   <ButtonSecondary
+                    testID="load-vault-select-vaults-button"
                     stretch
                     onPress={() =>
                       navigation.navigate('Welcome', { state: 'selectOrLoad' })
@@ -131,6 +138,7 @@ export const LoadVault = () => {
                         snapPoints: ['10%', '75%', '75%']
                       })
                     }
+                    testID="load-vault-scan-qr-button"
                   >
                     <QrCodeIcon size="21" color={colors.primary400.mode1} />
                     <Text style={styles.qrCodeText}>{t`Scan QR Code`}</Text>

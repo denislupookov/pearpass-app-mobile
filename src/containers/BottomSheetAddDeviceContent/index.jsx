@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet'
 import { useLingui } from '@lingui/react/macro'
@@ -8,6 +8,7 @@ import {
 } from 'pearpass-lib-ui-react-native-components'
 import { colors } from 'pearpass-lib-ui-theme-provider/native'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useAutoLockContext } from 'src/context/AutoLockContext'
 
 import { PairAnotherDeviceContent } from './PairAnotherDeviceContent'
 import { PairThisDeviceContent } from './PairThisDeviceContent'
@@ -21,6 +22,7 @@ const TAB = {
 export const BottomSheetAddDeviceContent = () => {
   const { t } = useLingui()
   const { collapse } = useBottomSheet()
+  const { setShouldBypassAutoLock } = useAutoLockContext()
 
   const [activeTab, setActiveTab] = useState(TAB.PAIR_THIS)
   const [showScanner, setShowScanner] = useState(false)
@@ -32,6 +34,13 @@ export const BottomSheetAddDeviceContent = () => {
       collapse()
     }
   }
+
+  useEffect(() => {
+    setShouldBypassAutoLock(true)
+    return () => {
+      setShouldBypassAutoLock(false)
+    }
+  }, [])
 
   return (
     <BottomSheetScrollView style={styles.container}>
@@ -71,7 +80,7 @@ export const BottomSheetAddDeviceContent = () => {
                 activeOpacity={0.7}
                 onPress={() => setActiveTab(TAB.PAIR_ANOTHER)}
               >
-                <Text style={styles.tabText}>{t`Load a Vault`}</Text>
+                <Text style={styles.tabText}>{t`Import vault`}</Text>
               </TouchableOpacity>
             </View>
           }
@@ -95,7 +104,7 @@ export const BottomSheetAddDeviceContent = () => {
                 onPress={() => setActiveTab(TAB.PAIR_ANOTHER)}
               >
                 <Text style={[styles.tabText, styles.tabTextActive]}>
-                  {t`Load a Vault`}
+                  {t`Import vault`}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -109,7 +118,7 @@ export const BottomSheetAddDeviceContent = () => {
             <YellowErrorIcon size={14} />
           </View>
           <Text style={styles.cautionText}>
-            {t`Keep this code private. Anyone with it can connect a device to your account.`}
+            {t`Keep this code private. Anyone with it can connect a device to your vault.`}
           </Text>
         </View>
       )}
