@@ -30,8 +30,8 @@ import {
   PasswordField
 } from '../../../libComponents'
 import { addHttps } from '../../../utils/addHttps'
-import { formatPasskeyDate } from '../../../utils/formatPasskeyDate'
 import { convertBase64FilesToUint8 } from '../../../utils/convertBase64FilesToUint8'
+import { formatPasskeyDate } from '../../../utils/formatPasskeyDate'
 import { logger } from '../../../utils/logger'
 import {
   FormWrapper,
@@ -267,7 +267,10 @@ export const CreateOrEditLoginContent = ({ initialRecord, selectedFolder }) => {
                   label={t`Passkey`}
                   placeholder={t`Passkey`}
                   variant="outline"
-                  value={formatPasskeyDate(values.passkeyCreatedAt) || t`Passkey Stored`}
+                  value={
+                    formatPasskeyDate(values.passkeyCreatedAt) ||
+                    t`Passkey Stored`
+                  }
                   isFirst
                   isLast
                   isDisabled

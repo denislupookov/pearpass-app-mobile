@@ -138,7 +138,9 @@ Consider changing it to keep your account secure.`}
             label={t`Passkey`}
             placeholder={t`Passkey`}
             variant="outline"
-            value={formatPasskeyDate(values.passkeyCreatedAt) || t`Passkey Stored`}
+            value={
+              formatPasskeyDate(values.passkeyCreatedAt) || t`Passkey Stored`
+            }
             isDisabled
             editable={false}
           />
