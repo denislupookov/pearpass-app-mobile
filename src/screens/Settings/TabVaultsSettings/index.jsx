@@ -9,6 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { CardSingleSetting } from '../../../components/CardSingleSetting'
 import { ListItem } from '../../../components/ListItem'
+import { BottomSheetDeleteVault } from '../../../containers/BottomSheetDeleteVault'
+import { BottomSheetDeleteVaultConfirm } from '../../../containers/BottomSheetDeleteVaultConfirm'
 import { BottomSheetVaultAction } from '../../../containers/BottomSheetVaultAction'
 import { useBottomSheet } from '../../../context/BottomSheetContext'
 import { ButtonLittle } from '../../../libComponents'
@@ -30,6 +32,60 @@ export const VaultsManageSection = () => {
     })
   }
 
+  const handleVaultDeleteClick = (vaultId, vaultName) => {
+    // Mock devices - in production, fetch from API
+    const devices = [
+      { id: 'current', name: t`This device` },
+      { id: 'device1', name: t`Andrea's Iphone` },
+      { id: 'device2', name: t`Andrea's laptop` }
+    ]
+
+    // Step 1: Show device selection bottom sheet
+    expand({
+      children: (
+        <BottomSheetDeleteVault
+          vaultId={vaultId}
+          vaultName={vaultName}
+          devices={devices}
+          onConfirmDelete={(selectedDevices) => {
+            // Step 2: Show password confirmation bottom sheet
+            expand({
+              children: (
+                <BottomSheetDeleteVaultConfirm
+                  vaultId={vaultId}
+                  vaultName={vaultName}
+                  selectedDevices={selectedDevices}
+                  devices={devices}
+                  onConfirmDelete={({
+                    selectedDevices,
+                    masterPassword,
+                    vaultPassword
+                  }) => {
+                    // TODO: Implement actual vault deletion logic
+                    console.log('Deleting vault:', vaultId)
+                    console.log('From devices:', selectedDevices)
+                    console.log(
+                      'With master password:',
+                      masterPassword ? '***' : 'not provided'
+                    )
+                    console.log(
+                      'With vault password:',
+                      vaultPassword ? '***' : 'not provided'
+                    )
+                  }}
+                />
+              ),
+              snapPoints: ['75%', '90%'],
+              enableContentPanningGesture: false
+            })
+          }}
+        />
+      ),
+      snapPoints: ['65%', '90%'],
+      enableContentPanningGesture: false
+    })
+  }
+
   return (
     <CardSingleSetting title={t`Your Vault`}>
       <View style={styles.sectionContent}>
@@ -43,6 +99,7 @@ export const VaultsManageSection = () => {
           testID={`vault-item-${vault.id}`}
           accessibilityLabel={`vault-item-${vault.id}`}
           onEditClick={() => handleVaultEditClick(vault.id, vault.name)}
+          onDeleteClick={() => handleVaultDeleteClick(vault.id, vault.name)}
         />
       </View>
     </CardSingleSetting>
